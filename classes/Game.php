@@ -124,6 +124,11 @@ class Game {
     }
 
     public function feedAnimal($animalId, $provisionId) {
+        if (!isset($this->provisions[$provisionId])) {
+            $this->addMessage("Vous n'avez pas de provision valide pour nourrir cet animal !");
+            return;
+        }
+        
         if ($this->consumePoints(1)) {
             $animal = $this->animals[$animalId];
             $provision = $this->provisions[$provisionId];
