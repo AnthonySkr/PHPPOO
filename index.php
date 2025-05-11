@@ -50,13 +50,18 @@ if (isset($_POST['action'])) {
 
         case 'feedAnimal':
             $game-> feedAnimal($_POST['animal'], $_POST['provision']);
-
             break;
+
         case 'healAnimal':
             $game->healAnimal($_POST['animal']);
             break;
+
         case 'petAnimal':
             $game->petAnimal($_POST['animal']);
+            break;
+
+        case 'playTogether':
+            $game->playTogether();
             break;
     }
 

@@ -24,6 +24,11 @@
                 <button type="submit" class="btn btn-primary">Passer la nuit</button>
             </form>
 
+            <form action="index.php" method="post">
+                <input type="hidden" name="action" value="playTogether">
+                <button type="submit" class="btn btn-warning">Faire jouer tous les animaux</button>
+            </form>
+
             <form action="index.php" method="post" class="create-animal-form">
                 <input type="hidden" name="action" value="createAnimal">
                 <input type="text" name="name" placeholder="Nom de l'animal" required>

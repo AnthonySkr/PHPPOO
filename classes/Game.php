@@ -13,6 +13,7 @@ use Classes\Provision\Watermelon;
 class Game {
     private $points = 3;
     private $days = 1;
+    private $unusedPoints = 0;
 
     private $animals = [];
     private $provisions= [];
@@ -109,14 +110,17 @@ class Game {
 
     public function night() 
     {
+        $this->unusedPoints += $this->points;
+        $this->points = 3 + $this->unusedPoints;
+        $this->unusedPoints = 0;
+
         $this->days++;
-        $this->points = 3;
 
         foreach ($this->animals as $id => $animal) {
             $animal->sleep();
         }
 
-        $this->addMessage("La nuit est passée");
+        $this->addMessage("La nuit est passée. Vous avez maintenant {$this->points} points d'action.");
     }
 
     public function feedAnimal($animalId, $provisionId) {
@@ -147,6 +151,21 @@ class Game {
             $moodBoost = rand(0, 30);
             $animal->changeMood($moodBoost);
             $this->addMessage("You petted {$animal->getName()} and improved its mood by {$moodBoost} points!");
+        }
+    }
+
+    public function playTogether()
+    {
+        if (count($this->animals) < 2) {
+            $this->addMessage("Vous devez avoir au moins 2 animaux pour jouer ensemble !");
+            return;
+        }
+
+        if ($this->consumePoints(5)) {
+            foreach ($this->animals as $animal) {
+                $moodBoost = rand(10, 30);
+                $animal->changeMood($moodBoost);
+            }
         }
     }
 
