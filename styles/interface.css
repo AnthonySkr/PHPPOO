@@ -6,87 +6,139 @@ body {
    padding: 0;
    display: flex;
    flex-direction: column;
-   align-items: center;
    min-height: 100vh;
 }
 
-.info-bar {
-   background-color: #f4a261; /* Couleur différente */
+header.info-bar {
+   background-color: #f4a261;
    color: white;
-   padding: 10px;
+   padding: 15px;
    text-align: center;
    font-size: 18px;
    font-weight: bold;
+   display: flex;
+   justify-content: space-between;
+}
+
+main {
+   flex: 1;
+   padding: 20px;
+   width: 90%;
+   max-width: 1200px;
+   margin: auto;
+}
+
+section {
+   margin-bottom: 30px;
 }
 
 h2 {
-   margin-top: 20px;
    color: #444;
+   margin-bottom: 15px;
 }
 
-form {
-   margin: 10px 0;
+.actions {
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
 }
 
-form button {
-   background-color: #007bff;
-   color: white;
-   border: none;
-   padding: 10px 15px;
+.messages .message {
+   background-color: #ffefc1;
+   padding: 10px;
+   margin: 5px 0;
    border-radius: 5px;
-   cursor: pointer;
-   font-size: 14px;
+   border: 1px solid #f4a261;
 }
 
-form button:hover {
-   background-color: #0056b3;
-}
-
-form input[type="text"],
-form select {
-   padding: 8px;
-   margin-right: 10px;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   font-size: 14px;
-}
-
-.animals,
-.provisions {
+.animal-list,
+.provision-list {
    display: flex;
    flex-wrap: wrap;
+   gap: 20px;
    justify-content: center;
-   margin-top: 20px;
 }
 
 .animal-card,
 .provision-card {
    background-color: white;
-   border: 2px solid #ddd;
+   border: 1px solid #ddd;
    border-radius: 10px;
    padding: 15px;
-   margin: 10px;
-   width: 220px;
+   width: 250px;
    text-align: center;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.animal-card:hover {
+.animal-card:hover,
+.provision-card:hover {
    transform: translateY(-5px);
    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.animal-card div {
-   margin: 5px 0;
+.animal-stats,
+.provision-stats {
+   margin-top: 10px;
+   text-align: left;
 }
 
-pre {
+.btn {
+   padding: 10px 15px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 14px;
+}
+
+.btn-primary {
+   background-color: #007bff;
+   color: white;
+}
+
+.btn-primary:hover {
+   background-color: #0056b3;
+}
+
+.btn-success {
+   background-color: #28a745;
+   color: white;
+}
+
+.btn-success:hover {
+   background-color: #218838;
+}
+
+.btn-warning {
+   background-color: #ffc107;
+   color: black;
+}
+
+.btn-warning:hover {
+   background-color: #e0a800;
+}
+
+.btn-danger {
+   background-color: #dc3545;
+   color: white;
+}
+
+.btn-danger:hover {
+   background-color: #c82333;
+}
+
+.btn-secondary {
+   background-color: #6c757d;
+   color: white;
+}
+
+.btn-secondary:hover {
+   background-color: #5a6268;
+}
+
+footer {
    background-color: #f8f9fa;
    padding: 10px;
-   border-radius: 5px;
-   border: 1px solid #ddd;
-   overflow-x: auto;
-   max-width: 90%;
-   margin-top: 20px;
+   text-align: center;
+   border-top: 1px solid #ddd;
 }

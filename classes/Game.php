@@ -92,7 +92,7 @@ class Game {
 
             if (isset($provision)) {
                 $this->provisions[] = $provision;
-                $this->addMessage("You found a {$provision->getName()} !");
+                $this->addMessage("You found a provision !");
             }
         }
     }
