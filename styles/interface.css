@@ -83,6 +83,24 @@ h2 {
    text-align: left;
 }
 
+.animal-card.dead {
+   background-color: #f8d7da;
+   border-color: #f5c6cb;
+   color: #721c24;
+   opacity: 0.7;
+   pointer-events: none;
+}
+
+.animal-card.dead h3 {
+   text-decoration: line-through;
+}
+
+.animal-status {
+   font-weight: bold;
+   color: #721c24;
+   margin-top: 10px;
+}
+
 .btn {
    padding: 10px 15px;
    border: none;
@@ -136,9 +154,52 @@ h2 {
    background-color: #5a6268;
 }
 
+/* Footer */
 footer {
    background-color: #f8f9fa;
-   padding: 10px;
-   text-align: center;
-   border-top: 1px solid #ddd;
+   padding: 20px;
+   border-top: 1px solid #dee2e6;
+   font-family: Arial, sans-serif;
+   color: #333;
+}
+
+footer .game-rules {
+   max-width: 800px;
+   margin: 0 auto;
+   text-align: left;
+}
+
+footer .game-rules h3 {
+   font-size: 1.5rem;
+   margin-bottom: 10px;
+   color: #007bff;
+}
+
+footer .game-rules h4 {
+   font-size: 1.2rem;
+   margin-top: 15px;
+   margin-bottom: 10px;
+   color: #495057;
+}
+
+footer .game-rules p {
+   font-size: 1rem;
+   line-height: 1.5;
+   margin-bottom: 10px;
+}
+
+footer .game-rules ul {
+   list-style-type: disc;
+   padding-left: 20px;
+   margin-bottom: 15px;
+}
+
+footer .game-rules ul li {
+   font-size: 1rem;
+   margin-bottom: 5px;
+}
+
+footer .game-rules em {
+   font-style: italic;
+   color: #6c757d;
 }

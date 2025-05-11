@@ -56,7 +56,7 @@
             <h2>Animaux</h2>
             <div class="animal-list">
                 <?php foreach ($game->getAnimals() as $index => $animal): ?>
-                    <div class="animal-card">
+                    <div class="animal-card <?= $animal->isDead() ? 'dead' : '' ?>">
                         <h3><?= $animal->getName() ?> <?= $animal->getIcon() ?></h3>
                         <div class="animal-stats">
                             <div>Âge : <?= $animal->getAge() ?></div>
@@ -65,28 +65,32 @@
                             <div>Faim : <?= $animal->getHunger() ?></div>
                             <div>Soif : <?= $animal->getThirst() ?></div>
                         </div>
-                        <div class="animal-actions">
-                            <form action="index.php" method="post">
-                                <input type="hidden" name="action" value="feedAnimal">
-                                <input type="hidden" name="animal" value="<?= $index ?>">
-                                <select name="provision">
-                                    <?php foreach ($game->getProvisions() as $provisionIndex => $provision): ?>
-                                        <option value="<?= $provisionIndex ?>"><?= $provision->getIcon() ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <button type="submit" class="btn btn-primary">Nourrir</button>
-                            </form>
-                            <form action="index.php" method="post">
-                                <input type="hidden" name="action" value="healAnimal">
-                                <input type="hidden" name="animal" value="<?= $index ?>">
-                                <button type="submit" class="btn btn-warning">Soigner</button>
-                            </form>
-                            <form action="index.php" method="post">
-                                <input type="hidden" name="action" value="petAnimal">
-                                <input type="hidden" name="animal" value="<?= $index ?>">
-                                <button type="submit" class="btn btn-secondary">Caresser</button>
-                            </form>
-                        </div>
+                        <?php if ($animal->isDead()): ?>
+                            <div class="animal-status">Cet animal est mort et ne peut plus être interagi avec.</div>
+                        <?php else: ?>
+                            <div class="animal-actions">
+                                <form action="index.php" method="post">
+                                    <input type="hidden" name="action" value="feedAnimal">
+                                    <input type="hidden" name="animal" value="<?= $index ?>">
+                                    <select name="provision">
+                                        <?php foreach ($game->getProvisions() as $provisionIndex => $provision): ?>
+                                            <option value="<?= $provisionIndex ?>"><?= $provision->getIcon() ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">Nourrir</button>
+                                </form>
+                                <form action="index.php" method="post">
+                                    <input type="hidden" name="action" value="healAnimal">
+                                    <input type="hidden" name="animal" value="<?= $index ?>">
+                                    <button type="submit" class="btn btn-warning">Soigner</button>
+                                </form>
+                                <form action="index.php" method="post">
+                                    <input type="hidden" name="action" value="petAnimal">
+                                    <input type="hidden" name="animal" value="<?= $index ?>">
+                                    <button type="submit" class="btn btn-secondary">Caresser</button>
+                                </form>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -115,9 +119,39 @@
     </main>
 
     <footer>
+        <!--
         <pre>
             <?php print_r($game); ?>
         </pre>
+        -->
+        <div class="game-rules">
+            <h3>Tamagotchi Game — Règles du jeu</h3>
+            <p>Gérez un zoo virtuel : créez, nourrissez, soignez et faites interagir vos animaux. Chaque jour, vous disposez de <strong>3 points d'action</strong> en plus de ceux restant du jour précédent.</p>
+
+            <h4>Actions disponibles</h4>
+            <ul>
+                <li><strong>Créer un animal</strong> : 1 point</li>
+                <li><strong>Nourrir un animal</strong> : 1 point</li>
+                <li><strong>Soigner un animal</strong> : 3 points</li>
+                <li><strong>Caresser un animal</strong> : 2 points</li>
+                <li><strong>Faire jouer tout les animaux</strong> : 5 points</li>
+                <li><strong>Chercher des provisions</strong> : 1 point</li>
+            </ul>
+
+            <h4>Caractéristiques des animaux</h4>
+            <ul>
+                <li><strong>Faim</strong> : 0 à 100 (100 = très faim)</li>
+                <li><strong>Soif</strong> : 0 à 100 (100 = très soif)</li>
+                <li><strong>Santé</strong> : 0 à 100 (0 = mort)</li>
+                <li><strong>Humeur</strong> : 0 à 100 (0 = très triste)</li>
+                <li><strong>Âge</strong> : en jours</li>
+            </ul>
+
+            <h4>Objectif</h4>
+            <p>Entretenez vos animaux, faites-les interagir et veillez à leur bien-être au fil des jours. N'oubliez pas de passer la nuit pour faire avancer le temps.</p>
+
+            <p><em>Bon jeu ! 🐾</em></p>
+        </div>
     </footer>
 </body>
 </html>

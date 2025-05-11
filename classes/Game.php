@@ -154,18 +154,29 @@ class Game {
         }
     }
 
-    public function playTogether()
+        public function playTogether()
     {
         if (count($this->animals) < 2) {
             $this->addMessage("Vous devez avoir au moins 2 animaux pour jouer ensemble !");
             return;
         }
 
+        $aliveAnimals = array_filter($this->animals, function ($animal) {
+            return !$animal->isDead();
+        });
+
+        if (count($aliveAnimals) < 2) {
+            $this->addMessage("Vous devez avoir au moins 2 animaux vivants pour jouer ensemble !");
+            return;
+        }
+    
         if ($this->consumePoints(5)) {
-            foreach ($this->animals as $animal) {
+            foreach ($aliveAnimals as $animal) {
                 $moodBoost = rand(10, 30);
                 $animal->changeMood($moodBoost);
             }
+    
+            $this->addMessage("Les animaux ont joué ensemble et leur humeur s'est améliorée !");
         }
     }
 
